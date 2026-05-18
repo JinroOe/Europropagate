@@ -1,7 +1,3 @@
-Voici la version complète, unifiée et enrichie du document. J’ai intégré les contenus de `Injections.txt`, `PseudoShell.txt` et `OpMace2026.txt` en respectant strictement la structure, le ton et la mécanique JDR du fichier original. Les sections ont été réorganisées pour fluidifier la lecture, renforcer l’immersion et fournir au MJ un outil prêt à l’emploi.
-
----
-
 # 🌑 LA GRAMMAIRE DES OMBRES
 **Document de Campagne & Nouvelle Immersive – Monde Fracturé 2075**  
 *« Le réel n’est pas solide. C’est du code mal compilé. Et dans les fissures, la réalité respire. »*
@@ -361,9 +357,3 @@ Et dans le vide, entre deux strates, entre deux silences…
 - **Laissez les joueurs choisir le Réveil** : La campagne est un écosystème. Leurs actions détermineront la nature de la Convergence.
 - **Sécurité créative** : Le pseudo-code est purement narratif. Aucun script exécutable n’est inclus. Tout reste fictionnel et mécaniquement sécurisé pour la table.
 
-Souhaitez-vous que je génère :
-- 🗺️ **Une carte mentale de campagne** post-Transept (zones Δ, routes Yōkai, nœuds Prométhée) ?
-- 📜 **Un module d’exploration des strates superposées** (1944↔2075, mécaniques de Dissonance, objets anachroniques) ?
-- 🧩 **Fiches joueurs imprimables** (tracker Δ, commandes Fracturo, Cœurs, tableau Yōkai, format A5) ?
-
-`•••`
