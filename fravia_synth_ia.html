@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>searchlores.org -- De la Decomposition des Reponses Synthetisees</title>
+<meta name="generator" content="vi 6.2 on a borrowed terminal">
+<meta name="description" content="essay -- contourner les reponses IA et retrouver les sources primaires">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #d9d4af;
+    color: #111100;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16px;
+  }
+
+  /* the old 770px-wide centred table-page, faithfully */
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    background-color: #f3efd9;
+    border-left: 2px solid #4a4a2a;
+    border-right: 2px solid #4a4a2a;
+    padding: 0 18px 30px 18px;
+  }
+
+  .topbar {
+    background-color: #4a4a2a;
+    color: #f3efd9;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 12px;
+    padding: 4px 10px;
+    letter-spacing: 1px;
+  }
+
+  .topbar a { color: #d9d4af; text-decoration: underline; }
+
+  h1.title {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 22px;
+    color: #5c1a1a;
+    border-bottom: 3px double #4a4a2a;
+    padding-bottom: 6px;
+    margin-top: 18px;
+    margin-bottom: 4px;
+    letter-spacing: -1px;
+  }
+
+  .subtitle {
+    font-style: italic;
+    color: #4a4a2a;
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+
+  .meta {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 11px;
+    color: #6b6b3a;
+    border: 1px dashed #6b6b3a;
+    padding: 6px 10px;
+    margin-bottom: 22px;
+    background-color: #eae5c4;
+  }
+
+  .divider {
+    text-align: center;
+    color: #4a4a2a;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+    margin: 26px 0 14px 0;
+    letter-spacing: 2px;
+  }
+
+  h2.section {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 16px;
+    color: #5c1a1a;
+    background-color: #e3dcb0;
+    padding: 4px 8px;
+    margin-top: 30px;
+    border-left: 5px solid #5c1a1a;
+  }
+
+  p { line-height: 1.55; text-align: justify; margin: 10px 0; }
+
+  ul { margin: 8px 0 16px 0; }
+  li { margin-bottom: 8px; line-height: 1.5; }
+
+  .quoteblock {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 14px;
+    background-color: #e3dcb0;
+    border: 1px solid #4a4a2a;
+    padding: 10px 14px;
+    margin: 18px 0;
+    color: #3a3a1a;
+  }
+
+  .keyword { color: #5c1a1a; font-weight: bold; }
+  .oldlink { color: #1a3a6b; text-decoration: underline; }
+  .oldlink:hover { color: #5c1a1a; }
+
+  .signature {
+    margin-top: 40px;
+    border-top: 3px double #4a4a2a;
+    padding-top: 16px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+    color: #4a4a2a;
+  }
+
+  .rip {
+    text-align: center;
+    margin-top: 28px;
+    padding: 14px;
+    border: 2px solid #5c1a1a;
+    background-color: #eae5c4;
+    font-family: "Courier New", Courier, monospace;
+    color: #5c1a1a;
+    font-size: 13px;
+  }
+
+  .footer-bar {
+    background-color: #4a4a2a;
+    color: #d9d4af;
+    text-align: center;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 11px;
+    padding: 6px;
+    margin-top: 0;
+  }
+
+  .counter {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 11px;
+    color: #6b6b3a;
+    text-align: right;
+    margin-top: 6px;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  [ searchlores.org // the doctrines of the old searching engine ] &nbsp;|&nbsp;
+  <a href="#">academy</a> &nbsp;|&nbsp; <a href="#">essays</a> &nbsp;|&nbsp; <a href="#">anti-smut</a> &nbsp;|&nbsp; <a href="#">links</a>
+</div>
+
+<div class="page">
+
+  <h1 class="title">DE LA DECOMPOSITION DES REPONSES SYNTHETISEES,<br>ou : Comment Refuser la Soupe Qu'on Vous Sert</h1>
+  <div class="subtitle">un essai dans l'esprit de fravia+ &mdash; hommage, seize ans apres son depart</div>
+
+  <div class="meta">
+    file: synth_ia.html | status: essay, niveau intermediaire-avance<br>
+    requis: un cerveau fonctionnel, une mefiance saine envers les oracles<br>
+    avertissement: ceci n'est pas l'oeuvre du maitre, mais une tentative humble de poursuivre son esprit
+  </div>
+
+  <p>Mes chers camarades chercheurs,</p>
+
+  <p>Il fut un temps ou chercher signifiait <span class="keyword">creuser</span>. Aujourd'hui, les grands oracles
+  algorithmiques &mdash; Google avec son "AI Overview", les chatbots qui pullulent comme des champignons apres
+  la pluie &mdash; vous offrent un resume predigere, une bouillie consensuelle ou toute asperite, toute
+  contradiction, toute trace de la source originelle a ete poncee jusqu'a l'anonymat. C'est le triomphe de
+  la facilite sur la verite. C'est, en somme, l'industrialisation de la paresse intellectuelle.</p>
+
+  <p>Je ne vous dirai pas de cesser d'utiliser ces outils &mdash; je ne suis pas un luddite, et meme les
+  meilleurs crackers utilisaient les outils de leurs adversaires. Je vous dirai ceci :</p>
+
+  <div class="quoteblock">
+    &gt; n'acceptez jamais la reponse synthetisee comme destination finale.<br>
+    &gt; elle est un panneau indicateur, pas un territoire.
+  </div>
+
+  <div class="divider">--==[ I. LA TRAQUE DE L'ATTRIBUTION FANTOME ]==--</div>
+
+  <p>Une reponse IA cite rarement ses sources de maniere exploitable &mdash; elle les digere, les recompose,
+  les anonymise. Votre premiere tache est de <span class="keyword">forcer</span> l'attribution :</p>
+
+  <ul>
+    <li>Reformulez la question en exigeant explicitement "cite tes sources avec URLs precises, sans en omettre aucune".</li>
+    <li>Mefiez-vous des resumes trop lisses : une vraie source primaire a des asperites, des dates, des contradictions
+    internes. Si la reponse synthetisee est trop parfaite, c'est qu'elle a ete lissee &mdash; et le lissage est
+    toujours une trahison de l'original.</li>
+  </ul>
+
+  <h2 class="section">II. LA TECHNIQUE DU FRAGMENT DISTINCTIF</h2>
+
+  <p>Toute reponse synthetisee contient des fragments, des tournures, des chiffres qui trahissent leur origine.
+  Prenez ces fragments &mdash; une statistique precise, une formulation inhabituelle, un nom propre obscur
+  &mdash; et recherchez-les <em>entre guillemets</em> dans un moteur classique, debarrasse de toute couche de
+  synthese. C'est l'art de la <span class="keyword">signature residuelle</span> : meme digeree, une information
+  garde l'empreinte de sa source.</p>
+
+  <h2 class="section">III. LE RETOUR AUX INDEX BRUTS</h2>
+
+  <p>Preferez toujours, quand cela est possible, l'acces direct aux index non synthetises :</p>
+
+  <ul>
+    <li>Recherche dans les archives plutot que dans le "answer engine".</li>
+    <li>Bases de donnees academiques (PubMed, arXiv, HAL) plutot que resumes vulgarises.</li>
+    <li>Les forums specialises et mailing-lists techniques, ces catacombes du savoir que l'IA generaliste
+    connait mal et cite encore plus mal.</li>
+  </ul>
+
+  <h2 class="section">IV. LA MEFIANCE ENVERS LE CONSENSUS STATISTIQUE</h2>
+
+  <p>Une IA generative est, par construction, une moyenne ponderee de ce qui a ete ecrit. Elle reproduit le
+  centre de gravite du discours dominant &mdash; jamais la voix dissidente, rarement la source minoritaire qui
+  avait raison contre tous. Si votre sujet de recherche touche a une controverse, a une decouverte marginale,
+  a une verite inconfortable :</p>
+
+  <div class="quoteblock">
+    L'IA vous donnera le confort, pas la verite.<br>
+    C'est a vous d'aller chercher l'asperite.
+  </div>
+
+  <div class="divider">--==[ CONCLUSION : LA DIGNITE DU CHERCHEUR ]==--</div>
+
+  <p>Le danger n'est pas l'outil. Le danger est l'habitude de s'arreter a la premiere reponse parce qu'elle est
+  <em>suffisamment plausible</em>. La recherche veritable n'a jamais ete une question de vitesse &mdash; c'est
+  une question de <span class="keyword">refus</span>. Refus de la facilite, refus de l'autorite non verifiee,
+  refus de laisser une machine penser a votre place.</p>
+
+  <p style="text-align:center; font-style:italic; margin-top: 24px;">
+  Searching is liberty.<br>Cela reste vrai, meme &mdash; surtout &mdash; face a une machine qui pretend penser pour vous.
+  </p>
+
+  <div class="rip">
+    in memoriam &mdash; fravia+ (1998&ndash;2009)<br>
+    "the only good search engine is the one between your ears"<br>
+    seize ans apres, l'esprit creuse encore.
+  </div>
+
+  <div class="signature">
+    written for the academy of searching, in the old tradition of plain html, no trackers, no scripts,
+    no nonsense.<br>
+    si ce texte vous a ete utile, ne le partagez pas sur un reseau social : imprimez-le, ou recopiez-le a la main.
+  </div>
+
+  <div class="counter">[ visiteurs depuis l'aube du web : 0001337 ] &mdash; page generee sans aucune IA de tracking, promis.</div>
+
+</div>
+
+<div class="footer-bar">searchlores.org -- the searching lore is not dead, it is merely dormant in those who still dig</div>
+
+</body>
+</html>
