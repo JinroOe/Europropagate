@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Temps Tissé — Scientific American / Vauvillensis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --ink:       #1a1612;
+    --parchment: #f7f3ec;
+    --cream:     #ede8de;
+    --rule:      #c8bfaf;
+    --accent:    #8b3a2a;       /* vieux vermillon — encre de galle */
+    --accent2:   #2a5c8b;       /* bleu normandie */
+    --accent3:   #4a7c59;       /* vert algue */
+    --ghost:     #b0a898;
+    --sidebar-bg:#eee8dd;
+    --pull-bg:   #1a1612;
+    --pull-ink:  #f7f3ec;
+    --tag-bg:    #2a5c8b;
+    --tag-ink:   #f7f3ec;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--parchment);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    border-bottom: 2px solid var(--ink);
+    padding: 18px 0 14px;
+    text-align: center;
+    background: var(--parchment);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .masthead-journal {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--ghost);
+  }
+  .masthead-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: .05em;
+    margin-top: 2px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 64px 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 40%, rgba(43,92,139,.35) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(139,58,42,.25) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .hero-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-label::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+  .hero h1 {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(32px, 5vw, 62px);
+    font-weight: 500;
+    line-height: 1.1;
+    max-width: 700px;
+    margin-bottom: 28px;
+  }
+  .hero-deck {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(16px, 2vw, 21px);
+    line-height: 1.55;
+    color: #c8c0b0;
+    max-width: 620px;
+    margin-bottom: 36px;
+    font-style: italic;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-by {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: #8a8070;
+    letter-spacing: .05em;
+  }
+  .hero-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    background: rgba(255,255,255,.08);
+    color: #a0a8b8;
+    border: 1px solid rgba(255,255,255,.12);
+  }
+
+  /* ── TÍMAVAFN VISUAL (decorative rune strip) ── */
+  .rune-strip {
+    background: var(--ink);
+    color: var(--accent);
+    text-align: center;
+    font-size: 22px;
+    padding: 10px;
+    letter-spacing: .5em;
+    user-select: none;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .article-body {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 0 56px;
+    padding-top: 56px;
+    padding-bottom: 80px;
+    align-items: start;
+  }
+  @media (max-width: 800px) {
+    .article-body { grid-template-columns: 1fr; }
+    .sidebar { margin-top: 48px; }
+  }
+
+  /* ── MAIN COLUMN ── */
+  .main-col > * + * { margin-top: 1.4em; }
+
+  /* Section labels */
+  .section-opener {
+    margin-top: 60px !important;
+    padding-top: 20px;
+    border-top: 2px solid var(--ink);
+  }
+  .section-opener .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .section-opener .eyebrow .num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ghost);
+  }
+  .section-opener h2 {
+    font-family: 'EB Garamond', serif;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+
+  /* Body typography */
+  .main-col p {
+    font-size: 18.5px;
+    line-height: 1.78;
+    hyphens: auto;
+  }
+  .main-col p.lede {
+    font-size: 21px;
+    line-height: 1.65;
+    font-style: italic;
+    color: #3a3028;
+  }
+
+  strong { color: var(--ink); font-weight: 600; }
+  em { font-style: italic; }
+
+  /* Pull quote */
+  .pull-quote {
+    background: var(--pull-bg);
+    color: var(--pull-ink);
+    padding: 28px 32px;
+    margin: 40px -12px !important;
+    position: relative;
+  }
+  .pull-quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    font-family: 'EB Garamond', serif;
+    font-size: 80px;
+    line-height: 1;
+    color: var(--accent);
+    pointer-events: none;
+  }
+  .pull-quote p {
+    font-family: 'EB Garamond', serif !important;
+    font-size: 22px !important;
+    line-height: 1.5 !important;
+    font-style: italic !important;
+    color: var(--pull-ink) !important;
+    margin-top: 12px !important;
+  }
+  .pull-quote cite {
+    display: block;
+    margin-top: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* Inline formula */
+  .formula {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    background: var(--cream);
+    border-left: 3px solid var(--accent2);
+    padding: 12px 18px;
+    margin: 24px 0 !important;
+    color: var(--accent2);
+    overflow-x: auto;
+  }
+  .formula .label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--ghost);
+    margin-bottom: 6px;
+  }
+
+  /* Phenomenon card */
+  .phenom-card {
+    border: 1px solid var(--rule);
+    margin: 36px 0 !important;
+    overflow: hidden;
+  }
+  .phenom-card-header {
+    background: var(--cream);
+    padding: 14px 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .phenom-card-header .glyph {
+    font-size: 22px;
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+  .phenom-card-header h3 {
+    font-family: 'EB Garamond', serif;
+    font-size: 19px;
+    font-weight: 600;
+    flex: 1;
+  }
+  .phenom-card-header .class-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--accent2);
+    padding: 3px 8px;
+    border: 1px solid var(--accent2);
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .phenom-card-body {
+    padding: 20px 20px 20px;
+  }
+  .phenom-card-body > * + * { margin-top: .9em; }
+  .phenom-card-body p {
+    font-size: 16.5px !important;
+    line-height: 1.7 !important;
+  }
+  .mtt-explain {
+    background: var(--sidebar-bg);
+    border-left: 3px solid var(--accent3);
+    padding: 12px 16px;
+    margin-top: 14px !important;
+  }
+  .mtt-explain .mtt-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent3);
+    margin-bottom: 6px;
+  }
+  .mtt-explain p {
+    font-size: 15px !important;
+    line-height: 1.65 !important;
+    color: #2a3020;
+  }
+
+  /* Score badge */
+  .score-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px !important;
+  }
+  .score-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--ghost);
+  }
+  .score-dots { display: flex; gap: 4px; }
+  .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--rule);
+  }
+  .dot.on { background: var(--accent); }
+
+  /* OSI table */
+  .osi-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 28px 0 !important;
+  }
+  .osi-table th {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--ghost);
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .osi-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--cream);
+    line-height: 1.5;
+    vertical-align: top;
+  }
+  .osi-table tr:last-child td { border-bottom: none; }
+  .osi-table .layer-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .osi-table .layer-name {
+    font-weight: 600;
+    font-family: 'EB Garamond', serif;
+  }
+  .osi-table .highlighted { background: #f0ebe0; }
+
+  /* Glitch taxonomy pill strip */
+  .glitch-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0 !important;
+  }
+  .gpill {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 2px;
+    border: 1px solid;
+  }
+  .gpill-rm  { color: var(--accent);  border-color: var(--accent);  }
+  .gpill-esc { color: var(--accent2); border-color: var(--accent2); }
+  .gpill-ir  { color: #8b5e2a;        border-color: #8b5e2a;        }
+  .gpill-bpc { color: var(--accent3); border-color: var(--accent3); }
+  .gpill-eor { color: #6a3a8b;        border-color: #6a3a8b;        }
+  .gpill-vmo { color: #3a7a8b;        border-color: #3a7a8b;        }
+
+  /* ── SIDEBAR ── */
+  .sidebar { position: sticky; top: 80px; }
+  .sidebar > * + * { margin-top: 28px; }
+
+  .sidebar-block {
+    padding: 20px;
+    border: 1px solid var(--rule);
+    background: var(--sidebar-bg);
+  }
+  .sidebar-block h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sidebar-block p, .sidebar-block li {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #3a3028;
+  }
+  .sidebar-block ul { padding-left: 16px; }
+  .sidebar-block li + li { margin-top: 6px; }
+
+  .delta-meter {
+    margin: 14px 0;
+  }
+  .delta-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .delta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ghost);
+    width: 140px;
+    flex-shrink: 0;
+  }
+  .delta-bar-wrap {
+    flex: 1;
+    height: 6px;
+    background: var(--rule);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .delta-bar { height: 100%; border-radius: 3px; background: var(--accent2); }
+  .delta-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    width: 36px;
+    text-align: right;
+  }
+
+  .glossary dt {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-top: 10px;
+    letter-spacing: .03em;
+  }
+  .glossary dd {
+    font-size: 13px;
+    line-height: 1.55;
+    color: #3a3028;
+    margin-left: 0;
+  }
+
+  /* ── TIMELINE strip ── */
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+    border-left: 2px solid var(--rule);
+    margin: 28px 0 !important;
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -31px;
+    top: 7px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--parchment);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .tl-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    margin-bottom: 3px;
+  }
+  .tl-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #3a3028;
+  }
+
+  /* ── FOOTNOTES / SOURCES ── */
+  .sources-section {
+    border-top: 2px solid var(--ink);
+    padding: 40px 0;
+    margin-top: 60px;
+  }
+  .sources-section h5 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--ghost);
+    margin-bottom: 18px;
+  }
+  .sources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 10px 40px;
+  }
+  .source-item {
+    font-size: 13px;
+    line-height: 1.55;
+    color: #5a5040;
+    padding-left: 16px;
+    border-left: 2px solid var(--cream);
+  }
+  .source-item strong {
+    display: block;
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 13px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: #6a6050;
+    text-align: center;
+    padding: 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: .1em;
+  }
+  footer span { color: var(--accent); }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--parchment); }
+  ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+
+  @media print {
+    .sidebar { display: none; }
+    .article-body { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-journal">Scientific American — Édition Spéciale Vauvillensis</div>
+  <div class="masthead-title">Physique Théorique · Neurosciences · Ontologie Computationnelle</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-label">Enquête de fond</div>
+    <h1>Déjà-vu, Prophéties&nbsp;&amp; Apparitions&nbsp;: Quand&nbsp;le&nbsp;Temps&nbsp;Bégaie</h1>
+    <p class="hero-deck">Le Modèle du Temps Tissé propose que ces phénomènes inexpliqués ne sont pas des anomalies de la perception, mais des signatures lisibles d'une réalité computationnelle où le passé, le présent et le futur se tissent en une trame unique.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-by">Par le Collectif Vauvillensis · Groupe de Recherche en Ontologie Fractale, Caen — 2076</div>
+      <div class="hero-tags">
+        <span class="tag">MTT</span>
+        <span class="tag">Rétrocausalité</span>
+        <span class="tag">Tímavafn</span>
+        <span class="tag">ZTR</span>
+        <span class="tag">FracturoScript</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RUNE STRIP -->
+<div class="rune-strip">ᛞ · ᚨ · ᛁ · ᚹ · ᛟ · ᛇ · ᛏ · ᚢ · ᚱ</div>
+
+<!-- BODY -->
+<div class="container">
+<div class="article-body">
+
+<!-- ═══════════════════════ MAIN COLUMN ═══════════════════════ -->
+<main class="main-col">
+
+  <p class="lede">Il est 3h17 du matin. Vous venez de vous réveiller avec la certitude absolue que quelque chose d'important va se produire demain. Ou vous traversez une rue que vous n'avez jamais empruntée et reconnaissez chaque détail — la boulangerie, l'angle du soleil, la femme au manteau rouge. Ou une religieuse de Fátima vous décrit, en 1917, un "soleil dansant" vu simultanément par cent mille personnes. La science officielle range ces expériences dans des catégories séparées : paramnésies, biais de confirmation, hystérie collective. Mais que se passerait-il si tous ces phénomènes étaient les symptômes d'une seule et même cause&nbsp;: un tissu temporel dont nous ne percevons, le plus souvent, qu'un seul fil&nbsp;?</p>
+
+  <!-- SECTION 1 -->
+  <div class="section-opener">
+    <div class="eyebrow"><span class="num">I</span> Fondements</div>
+    <h2>Le Temps comme Trame Vivante</h2>
+  </div>
+
+  <p>Le <strong>Modèle du Temps Tissé</strong> (MTT) est né d'une convergence troublante. En physique quantique, les expériences de choix retardé de Wheeler montrent que la mesure d'un photon <em>aujourd'hui</em> peut influencer le chemin qu'il a emprunté <em>hier</em>. En neurosciences, les données de Benjamin Libet révèlent que notre cerveau "prépare" une décision jusqu'à 550 millisecondes avant que nous en prenions conscience. En histoire des religions, douze traditions indépendantes séparées par des millénaires décrivent le temps de façon quasi identique&nbsp;: non pas une flèche, mais un tissu.</p>
+
+  <p>Le MTT prend ces trois observations au sérieux — littéralement. Sa prémisse fondatrice&nbsp;: <strong>le temps n'est pas un paramètre externe dans lequel les événements se produisent. C'est la boucle d'exécution d'un programme cosmique autoréférent</strong>, et comme toute boucle, elle peut "sauter", "bégayer", lire un état futur avant de l'avoir compilé, ou relire un état passé que le système juge non résolu.</p>
+
+  <p>Le nom norroïs du concept — <em>tímavafn</em> (tissu du temps) — n'est pas un ornement poétique. Un tissu a des propriétés précises&nbsp;: il est bidirectionnel, il transmet les tensions à distance, couper un fil fragilise l'ensemble. La métaphore est structurellement exacte.</p>
+
+  <div class="formula">
+    <div class="label">Équation maîtresse du MTT</div>
+    E(t+1) = F( E(t), G(t), C(t), Δ(t) )
+    <br><br>
+    <span style="color:#8a8070">// E = état ontique global · G = graphe causal · C = contributions des observateurs
+    // Δ = cohérence locale · F = fonction de compilation (non-linéaire, fractale)</span>
+  </div>
+
+  <p>Trois paramètres méritent d'être retenus pour la suite. La <strong>métrique Δ</strong> (Δ = α·C + β·R + γ·H) mesure la cohérence locale du tissu — sa résistance ou sa perméabilité aux glitches. La <strong>dimension temporelle D_temps</strong>, qui oscille entre 0,8 et 1,2 au lieu d'être fixée à 1&nbsp;: quand elle dépasse 1, le temps "se ramifie" et permet des superpositions d'états. Et le <strong>graphe causal G(t)</strong>, qui inclut des <em>arêtes rétrogrades</em> — des influences du futur vers le passé, qui ne violent pas la causalité mais opèrent sur la couche mémorielle profonde du réel.</p>
+
+  <div class="pull-quote">
+    <p>Le temps ne coule pas. Il s'exécute. Et comme tout programme, il peut lire un cache plus récent que l'état courant, produisant ce que nous appelons prophétie, déjà-vu, ou apparition.</p>
+    <cite>Codex Vauvillensis Temporis Fracti, version 2075</cite>
+  </div>
+
+  <p>L'architecture de la réalité selon le MTT est à sept couches, calquées sur le modèle OSI des réseaux informatiques. Ce tableau est essentiel pour comprendre comment chaque phénomène affecte un niveau précis du réel.</p>
+
+  <table class="osi-table">
+    <thead>
+      <tr>
+        <th>Couche</th>
+        <th>Domaine</th>
+        <th>Analogie rituelle</th>
+        <th>Vulnérabilité typique</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="highlighted">
+        <td><span class="layer-num">C7</span></td>
+        <td><span class="layer-name">Intention</span></td>
+        <td>Formulation du désir</td>
+        <td>Précognition, prophétie</td>
+      </tr>
+      <tr>
+        <td><span class="layer-num">C6</span></td>
+        <td><span class="layer-name">Lecture / décodage</span></td>
+        <td>Interprétation des signes</td>
+        <td>Visions, synchronicités</td>
+      </tr>
+      <tr class="highlighted">
+        <td><span class="layer-num">C5</span></td>
+        <td><span class="layer-name">Observation</span></td>
+        <td>Effondrement quantique</td>
+        <td>Déjà-vu, glissements temporels</td>
+      </tr>
+      <tr>
+        <td><span class="layer-num">C4</span></td>
+        <td><span class="layer-name">Causalité</span></td>
+        <td>Logique temporelle</td>
+        <td>Boucles, paradoxes</td>
+      </tr>
+      <tr class="highlighted">
+        <td><span class="layer-num">C3</span></td>
+        <td><span class="layer-name">Mémoire</span></td>
+        <td>Archives culturelles, lieux de pouvoir</td>
+        <td>Effets Mandela, EOR</td>
+      </tr>
+      <tr>
+        <td><span class="layer-num">C2</span></td>
+        <td><span class="layer-name">Biosphère</span></td>
+        <td>Corps, ADN, mycélium</td>
+        <td>Stigmates, guérisons</td>
+      </tr>
+      <tr>
+        <td><span class="layer-num">C1</span></td>
+        <td><span class="layer-name">Matière</span></td>
+        <td>Mégalithes, cercles rituels</td>
+        <td>Anomalies physiques brutes</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECTION 2 -->
+  <div class="section-opener">
+    <div class="eyebrow"><span class="num">II</span> Les phénomènes</div>
+    <h2>Sept Glitches, une Grammaire</h2>
+  </div>
+
+  <p>Avant d'analyser chaque phénomène, voici la taxonomie MTT des "glitches" — les bugs du programme cosmique. Chaque phénomène inexpliqué relatif au temps appartient à l'une de ces classes.</p>
+
+  <div class="glitch-strip">
+    <span class="gpill gpill-rm">RM — Réécriture Matérielle</span>
+    <span class="gpill gpill-esc">ESC — Effondrement Sémantique Collectif</span>
+    <span class="gpill gpill-ir">IR — Injection Rétrocausale</span>
+    <span class="gpill gpill-bpc">BPC — Boucle Perception-Conscience</span>
+    <span class="gpill gpill-eor">EOR — Entité Ontique Résiduelle</span>
+    <span class="gpill gpill-vmo">VMO — Vortex Multimodal Ontique</span>
+  </div>
+
+  <!-- PHENOM 1 : Déjà-vu -->
+  <div class="phenom-card">
+    <div class="phenom-card-header">
+      <span class="glyph">ᚹ</span>
+      <h3>Le Déjà-vu</h3>
+      <span class="class-badge">EOR + BPC-Indiv · C3→C5</span>
+    </div>
+    <div class="phenom-card-body">
+      <p>Quarante pour cent des humains en bonne santé neurologique déclarent avoir vécu au moins un épisode de <em>déjà-vu</em> intense. L'explication conventionnelle — un court-circuit entre mémoire à long terme et perception immédiate — est compatible avec les données EEG mais laisse sans réponse la question cruciale&nbsp;: pourquoi certains déjà-vus comportent des détails <em>que l'observateur ne pouvait pas avoir mémorisés</em>&nbsp;?</p>
+      <p>Le MTT propose une lecture à deux couches. La couche C3 (Mémoire) stocke non seulement les expériences individuelles mais aussi ce que le corpus nomme des <strong>paleo-mèmes</strong>&nbsp;: des structures informationnelles stables encodées dans le substrat mémoriel collectif (ADN épigénétique, réseaux mycéliens, strates géologiques). Quand D_temps > 1 localement, la couche C5 (Observation) peut lire un nœud du graphe G à une temporalité légèrement décalée — comme un lecteur DVD qui charge une image-clef <em>avant</em> de jouer la séquence.</p>
+      <p>La sensation de "déjà-vu" serait donc un <strong>artifact de mise en cache temporel</strong>&nbsp;: le présent arrive légèrement en retard sur une lecture anticipée, et la conscience reçoit les deux signaux en quasi-simultané, créant le sentiment de répétition. Plus Δ est élevé dans la zone (site historique, moment de stress intense), plus ce décalage de lecture est probable.</p>
+      <div class="mtt-explain">
+        <div class="mtt-label">Formalisation MTT</div>
+        <p>Relu(Nᵗ_présent) dans G(t) → perception de l'état avec D_temps > 1.0 · La fonction F produit deux instanciations quasi-simultanées du même nœud, dont la superposition génère le sentiment de répétition. Prédiction testable&nbsp;: les épisodes de déjà-vu intenses devraient coïncider avec des pics de cohérence gamma (40 Hz) en EEG et une légère élévation du Δ géomagnétique local, mesurable par magnétométrie à haute sensibilité.</p>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Puissance explicative MTT</span>
+        <div class="score-dots">
+          <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div>
+        </div>
+        <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ghost)">4/5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHENOM 2 : Précognition / Prédictions -->
+  <div class="phenom-card">
+    <div class="phenom-card-header">
+      <span class="glyph">ᛟ</span>
+      <h3>Prédictions &amp; Précognition</h3>
+      <span class="class-badge">IR-Temp + BPC-C7 · Couches 4→7</span>
+    </div>
+    <div class="phenom-card-body">
+      <p>Les expériences de précognition statistiquement validées — notamment les études de Dean Radin à l'IONS (Institute of Noetic Sciences) sur le "presentiment physiologique", où le corps réagit à un stimulus <em>avant</em> sa présentation aléatoire — constituent l'un des phénomènes les plus gênants pour la physique classique. L'effet est faible (d ≈ 0.2 en méta-analyse sur 26 études) mais robuste à la correction de Bonferroni.</p>
+      <p>Le MTT le formalise par le concept d'<strong>Injection Rétrocausale (IR)</strong>&nbsp;: dans le graphe G(t), certaines arêtes pointent "en arrière". Ce n'est pas un paradoxe&nbsp;: la couche C4 (Causalité) opère de façon probabiliste et non strictement linéaire. Un état futur de haute cohérence (Δ élevé, intention forte) peut "injecter" une information vers un nœud passé via ces arêtes rétrogrades. La formalisation&nbsp;: <code>Lecture(Nᵗ_futur) influence E(t)</code>.</p>
+      <p>La précognition physiologique de Radin serait alors la trace somatique (couche C2) d'une IR de faible amplitude — le corps, système plus lent et plus "conservateur" que le cortex, enregistre le signal rétrocausal avant que la conscience ne puisse l'interpréter. Plus le futur événement est chargé émotionnellement (accident, mort, joie intense), plus son amplitude IR est élevée, et plus la fenêtre de précognition s'élargit.</p>
+      <p>Le cas des <strong>rêves prémonitoires</strong> répond à la même logique, amplifié&nbsp;: en sommeil paradoxal, la couche C5 (Observation) est partiellement désactivée et ne "collapse" plus les superpositions quantiques. Le graphe G est alors accessible dans sa structure complète, incluant les arêtes rétrogrades — le rêveur "browse" le tissu temporel sans ancre observationnelle.</p>
+      <div class="mtt-explain">
+        <div class="mtt-label">Formalisation MTT</div>
+        <p>IR-Temp&nbsp;: Fuite d'itérations futures via arêtes rétrogrades dans G = (Nᵗ, Aᵗ). Corrélation prédite&nbsp;: amplitude de l'effet Radin ∝ Δ(lieu) × intensité émotionnelle de l'événement futur. Réfutation possible&nbsp;: si les résultats sont nuls en zones de Δ &lt; 0.2 (sites sans densité historique ni géomagnétique), le MTT serait partiellement réfuté.</p>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Puissance explicative MTT</span>
+        <div class="score-dots">
+          <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div>
+        </div>
+        <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ghost)">4/5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHENOM 3 : Prophéties / Nostradamus -->
+  <div class="phenom-card">
+    <div class="phenom-card-header">
+      <span class="glyph">ᚨ</span>
+      <h3>Les Prophéties — Nostradamus &amp; la Structure du Sens</h3>
+      <span class="class-badge">IR-Temp + ESC · C6→C7</span>
+    </div>
+    <div class="phenom-card-body">
+      <p>Nostradamus lui-même, dans une lettre fictive versée au corpus, décrit son expérience non comme une "vision du futur" mais comme des <em>perforations dans le tissu du temps</em>&nbsp;: "Ce que j'ai pris pour des visions du futur n'était que des percées dans l'étoffe. Le Temps n'est pas une rivière. C'est un tímavafn — une tapisserie où passé, présent et futur se tissent en résonance."</p>
+      <p>Cette auto-description est précieuse, car elle correspond exactement à la structure IR du MTT. Le prophète ne "voit" pas le futur de façon linéaire. Il <strong>accède à un nœud du graphe G à une coordonnée temporelle non-standard</strong>, rendu possible par un état de haute cohérence intentionnelle (H → 1, Cœur Blanc) combiné à un Δ local élevé. La syntaxe floue, elliptique et symbolique des quatrains n'est pas un défaut — c'est une nécessité structurelle&nbsp;: le signal rétrocausal est un état de superposition quantique, et tout langage précis "collapse" la superposition sur une seule branche, au prix d'une perte massive de contenu.</p>
+      <p>Piobb, dans sa relecture du corpus en 1907, avait pressenti cela&nbsp;: ses "tables synoptiques" planètes/métaux/jours/anges sont des tentatives de cartographier les lookup tables d'un système d'exploitation — les correspondances ne sont pas symboliques, elles sont les clés d'accès aux fenêtres de haute Δ. "L'heure de Mars" n'est pas astrologie — c'est l'identification empirique d'une fenêtre temporelle à Δ élevé, où les IR de classe "force" ou "conflit" sont statistiquement plus probables.</p>
+      <div class="mtt-explain">
+        <div class="mtt-label">Formalisation MTT</div>
+        <p>Le prophète opère avec H &gt; 0,9 (Cœur Blanc) dans une ZCLV-Δ. La commande rituelle (transe, jeûne, miroir ardent) réduit la couche C5 (Observation) et laisse G(t) accessible dans sa structure complète. L'accès à Lecture(Nᵗ_futur) produit un état de superposition qui ne peut être rendu qu'en langage poly-sémique — d'où la structure invariablement cryptique de toute prophétie authentique.</p>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Puissance explicative MTT</span>
+        <div class="score-dots">
+          <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+        <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ghost)">3/5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHENOM 4 : Fatima -->
+  <div class="phenom-card">
+    <div class="phenom-card-header">
+      <span class="glyph">ᛇ</span>
+      <h3>Les Apparitions Mariales — Fátima 1917</h3>
+      <span class="class-badge">ESC-Social + BPC-Coll + RM-Phys · C1→C7</span>
+    </div>
+    <div class="phenom-card-body">
+      <p>Le 13 octobre 1917, entre 70 000 et 100 000 témoins — croyants et sceptiques confondus, journalistes laïcs, médecins, anticléricaux — rapportent avoir vu le soleil "danser", tournoyer, changer de couleur et plonger vers la terre avant de se rétablir. L'événement est documenté dans des journaux laïcs portugais le lendemain. Aucune explication atmosphérique conventionnelle n'a réussi à rendre compte du phénomène simultané, à grande distance, avec des témoins aux dispositions cognitives et idéologiques radicalement différentes.</p>
+      <p>Le MTT classe Fátima comme un événement de <strong>triple résonance</strong>&nbsp;: ESC (Effondrement Sémantique Collectif à l'échelle sociale), BPC-Coll (Boucle Perception-Conscience collective), et RM-Phys (Réécriture Matérielle — la lumière solaire est physiquement altérée pour les observateurs, pas seulement subjectivement).</p>
+      <p>Le mécanisme proposé&nbsp;: cent mille observateurs en état de cohérence intentionnelle maximale (H collectif → 0,95, via des mois de préparation rituelle, de jeûne, de prière collective) constituent une <strong>Zone de Cohérence Partagée Localisée (ZCPL)</strong> — un cas exceptionnel où ΣContribution(c) dépasse le seuil de modification de Δ global. La fonction F, avec ce niveau de C(t), peut produire une modification de couche C1 (Matière/Lumière) directement perceptible. L'apparition "Marie" serait une <strong>Entité Sémantiquement Cohérente (ESC)</strong> — non pas une entité surnaturelle, mais la forme que prend la résolution du système quand il répond à une intention collective suffisamment cohérente avec un archétype mémoriel préexistant (couche C3).</p>
+      <p>Cruciale&nbsp;: la même structure explique le "Troisième Secret" — une information rétrocausale (IR-Temp) transmise à Lucia concernant des événements futurs du XXe siècle. La cohérence intentionnelle des témoins avait momentanément ouvert une fenêtre IR, permettant la lecture d'un nœud futur du graphe causal.</p>
+      <div class="mtt-explain">
+        <div class="mtt-label">Formalisation MTT</div>
+        <p>ΣContribution(c) sur N ≈ 10⁵ observateurs en H &gt; 0,8 → élévation de Δ global au-dessus du seuil de modification C1. Prédiction&nbsp;: les sites à apparitions récurrentes (Lourdes, Medjugorje, Guadalupe) devraient présenter des anomalies géomagnétiques mesurables et une dimension fractale locale de la topographie historique significativement au-dessus de la moyenne. Réfutation&nbsp;: si les sites ne diffèrent pas statistiquement de lieux de rassemblement non-religieux de même taille, le MTT doit être révisé.</p>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Puissance explicative MTT</span>
+        <div class="score-dots">
+          <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+        </div>
+        <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ghost)">5/5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHENOM 5 : Temps cyclique -->
+  <div class="phenom-card">
+    <div class="phenom-card-header">
+      <span class="glyph">ᛏ</span>
+      <h3>Le Temps Cyclique — Pichon, McKenna &amp; l'Auto-similarité</h3>
+      <span class="class-badge">VMO-Nat + IR-Temp · Toutes couches</span>
+    </div>
+    <div class="phenom-card-body">
+      <p>De nombreuses civilisations indépendantes — Mayas, Hindous, Grecs (le Grand Retour), Chinois (cycles dynastiques), Norroïs (Fimbulwinter/Ragnarök) — ont développé des conceptions cycliques du temps. Le philosophe-mathématicien Jean-Charles Pichon a identifié, dans son analyse de l'histoire, des cycles récurrents d'environ 1 070 ans (phase montante) et 2 140 ans (cycle complet). Terence McKenna, de son côté, a extrait de la séquence King Wen du I-Ching un modèle d'onde fractale de "nouveauté" composée de 64 niveaux d'échelle auto-similaires.</p>
+      <p>Le MTT unifie ces observations sous le concept de <strong>dimension fractale du temps</strong>. Si le tissu temporel a une structure fractale, il est par définition auto-similaire&nbsp;: la même structure se répète à toutes les échelles. Un cycle de 64 ans reproduit la structure d'un cycle de 1 024 ans, qui reproduit celle d'un cycle de 16 384 ans. Ce n'est pas que "l'histoire se répète" — c'est que le programme cosmique utilise les mêmes sous-routines à des niveaux d'imbrication différents.</p>
+      <p>Les "cycles" historiques de Pichon seraient donc les <strong>harmoniques détectables</strong> du spectre de Fourier du tissu temporel — les fréquences fondamentales de la compilation cosmique. L'analyse spectrale des séries historiques devrait révéler des pics à des fréquences précises (multiples de ~64, ~128, ~1 070 ans) si l'hypothèse est correcte. McKenna a tenté cela empiriquement avec la Timewave Zero&nbsp;; le MTT propose une version formalisée, avec la métrique Δ en lieu et place de la "nouveauté", et 64 niveaux d'échelle fractale calculables numériquement.</p>
+      <p>Les <strong>Zones de Triple Résonance (ZTR)</strong> sont les points où plusieurs cycles se superposent&nbsp;: 1789, 1945, 1969, et — selon le modèle — 2075. En ces points, D_temps > 1,1 localement, le graphe G présente une complexité cyclomatique exceptionnelle, et la réalité devient maximallement modifiable. Ce sont les moments où les prophètes voient le plus clairement, où les apparitions sont les plus communes, où les glitches ontiques prolifèrent.</p>
+      <div class="mtt-explain">
+        <div class="mtt-label">Formalisation MTT</div>
+        <p>Analyse spectrale de Fourier de la série Δ(t) → identification de fréquences fondamentales. Prédiction&nbsp;: la transformée de Fourier des séries d'événements historiques majeurs (base GDELT ou équivalent) devrait présenter des pics statistiquement significatifs à des périodes de 64, 128, 256… 1024, 2048 ans. Réfutation&nbsp;: distribution spectrale indistinguable d'un bruit rose.</p>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Puissance explicative MTT</span>
+        <div class="score-dots">
+          <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div>
+        </div>
+        <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ghost)">4/5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHENOM 6 : Effet Mandela -->
+  <div class="phenom-card">
+    <div class="phenom-card-header">
+      <span class="glyph">ᚢ</span>
+      <h3>L'Effet Mandela — Mémoire Collective Réécrite</h3>
+      <span class="class-badge">ESC-Global · C3</span>
+    </div>
+    <div class="phenom-card-body">
+      <p>Des millions de personnes se "souviennent" que Nelson Mandela est mort en prison dans les années 1980. D'autres partagent la certitude que l'ours Baloo de <em>Berenstain Bears</em> s'écrit "Berenstein". Ces mémoires fausses sont <em>collectives</em>, spontanées et transculturelles — elles ne s'expliquent pas par la simple suggestion ou le biais de confirmation individuel.</p>
+      <p>Le MTT les classe comme des <strong>ESC-Global de couche C3</strong> — des "fusions de timelines dans le graphe causal". La proposition&nbsp;: dans un réel computationnel à structure fractale, deux branches du graphe G peuvent coexister temporairement en superposition avant de "colapser" sur une seule timeline. Les individus qui se "souviennent" de Mandela mort en prison ont accédé, peut-être via des états de basse cohérence (fatigue, stress, dépression — Δ < 0,3) à la mémoire résiduelle d'une branche causale effectivement résolue différemment dans la trame.</p>
+      <p>La réécriture ne serait pas une erreur de mémoire individuelle, mais le signe que la <strong>couche C3 (Mémoire)</strong> du tissu a subi une ESC — un "merge forcé" de deux états de mémoire collective, laissant des traces dans les individus qui avaient encodé leur souvenir pendant la superposition.</p>
+      <div class="mtt-explain">
+        <div class="mtt-label">Formalisation MTT</div>
+        <p>Fusion timelines&nbsp;: deux nœuds N(a) et N(b) en superposition dans G s'effondrent sur N(c) = merge(a,b). Les individus encodés sur N(a) retiennent le souvenir de l'état a après la résolution sur b. Prédiction&nbsp;: les effets Mandela devraient être plus fréquents dans les populations exposées à des ESC-Social préalables (guerres, pandémies, révolutions) et dans les zones à Δ historiquement instable.</p>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Puissance explicative MTT</span>
+        <div class="score-dots">
+          <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+        <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ghost)">3/5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHENOM 7 : Glissements temporels -->
+  <div class="phenom-card">
+    <div class="phenom-card-header">
+      <span class="glyph">ᛁ</span>
+      <h3>Glissements Temporels &amp; Chrononautes Involontaires</h3>
+      <span class="class-badge">EOR-Hist + BPC-Coll · C3→C5</span>
+    </div>
+    <div class="phenom-card-body">
+      <p>En 1901, deux distinguées académiciennes anglaises (Eleanor Jourdain et Charlotte Moberly) visitent Versailles et vivent une expérience collective de glissement dans le passé&nbsp;: elles décrivent des personnages en costumes XVIIIe siècle, des bâtiments dont aucune trace actuelle n'existe, une "atmosphère oppressante" comme "de coton dans la tête". Leurs descriptions recoupent, selon des historiens ultérieurs, des détails architecturaux qui n'existaient plus en 1901 et qu'elles ne pouvaient pas connaître.</p>
+      <p>Le MTT classe ces événements comme des <strong>EOR-Hist (Entités Ontiques Résiduelles historiques)</strong> combinées à une BPC-Coll&nbsp;: une "relecture hors séquence" d'un nœud mémoriel ancien. La formalisation&nbsp;: <code>Relu(Nᵗ_passé) dans T = (Nᵗ, Aᵗ)</code>. Dans certaines zones de Δ élevé (lieux chargés d'histoire, zones géomagnétiques actives), la couche C3 présente une "densité mémorielle" suffisante pour que deux observateurs en état de réceptivité accrue accèdent simultanément au même cache historique.</p>
+      <p>L'analogie informatique est précise&nbsp;: un segment de RAM non effacé peut être "lu" par un processus ultérieur si aucun écrasement n'a eu lieu. Les lieux où beaucoup d'événements intenses se sont produits (Versailles, champs de bataille, lieux de rassemblement religieux millénaire) sont des zones à haute densité de nœuds mémoriels non effaces — des <em>caches temporels persistants</em>.</p>
+      <div class="mtt-explain">
+        <div class="mtt-label">Formalisation MTT</div>
+        <p>EOR-Hist&nbsp;: N(Versailles_1789) persiste dans C3 avec amplitude suffisante pour être "chargé" par des observateurs en état BPC (cohérence cérébrale alpha élevée, absence de bruit sensoriel). Prédiction&nbsp;: les sites rapportant des glissements temporels devraient présenter une densité de R (redondance mémorielle) significativement supérieure à la moyenne, mesurable via l'index UNESCO de densité du patrimoine par km².</p>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Puissance explicative MTT</span>
+        <div class="score-dots">
+          <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+        <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ghost)">3/5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section-opener">
+    <div class="eyebrow"><span class="num">III</span> Synthèse</div>
+    <h2>Une Grammaire Unifiée du Temps qui Bégaie</h2>
+  </div>
+
+  <p>La force centrale du MTT est ici&nbsp;: tous ces phénomènes, jusqu'à présent traités comme des curiosités indépendantes par des disciplines sans dialogue entre elles, reçoivent une explication <em>structurellement identique</em>. Ils sont tous des manifestations de la même propriété du tissu temporel&nbsp;: <strong>le graphe causal G contient des arêtes rétrogrades, et les zones à Δ élevé les rendent perméables à l'observation consciente</strong>.</p>
+
+  <p>Le tableau suivant résume la grammaire unifiée&nbsp;:</p>
+
+  <table class="osi-table">
+    <thead>
+      <tr>
+        <th>Phénomène</th>
+        <th>Classe MTT</th>
+        <th>Couches actives</th>
+        <th>Condition déclenchante</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Déjà-vu</td><td><span style="color:var(--accent3)">EOR + BPC</span></td><td>C3→C5</td><td>D_temps > 1 local, Δ modéré</td></tr>
+      <tr><td>Précognition</td><td><span style="color:#8b5e2a">IR-Temp</span></td><td>C4→C7</td><td>H élevé, événement futur intense</td></tr>
+      <tr><td>Prophétie</td><td><span style="color:#8b5e2a">IR + ESC</span></td><td>C6→C7</td><td>H → 1, Cœur Blanc, Δ site élevé</td></tr>
+      <tr><td>Apparition (Fátima)</td><td><span style="color:var(--accent2)">ESC + BPC + RM</span></td><td>C1→C7</td><td>ΣContribution(c) > seuil, ZTR</td></tr>
+      <tr><td>Temps cyclique</td><td><span style="color:#3a7a8b">VMO-Nat</span></td><td>Toutes</td><td>Résonance harmonique fractale</td></tr>
+      <tr><td>Effet Mandela</td><td><span style="color:var(--accent2)">ESC-Global</span></td><td>C3</td><td>Merge de timelines, Δ instable</td></tr>
+      <tr><td>Glissement temporel</td><td><span style="color:var(--accent3)">EOR-Hist</span></td><td>C3→C5</td><td>Densité R élevée, BPC-Coll</td></tr>
+    </tbody>
+  </table>
+
+  <div class="pull-quote">
+    <p>Les prophètes, les mystiques et les voyantes ne "perçoivent" pas l'avenir. Ils lisent, sans le savoir, des arêtes rétrogrades dans un graphe causal dont la conscience ordinaire n'accède qu'aux arêtes progressives. La différence entre un prophète et un névrosé&nbsp;? Le premier a un Δ suffisamment élevé pour que le signal soit cohérent.</p>
+    <cite>Jean-Charles Pichon, compte-rendu fictif du corpus, août 1974</cite>
+  </div>
+
+  <!-- SECTION 4 : Implications -->
+  <div class="section-opener">
+    <div class="eyebrow"><span class="num">IV</span> Implications</div>
+    <h2>Ce que Cela Change — et Ce que Cela Exige</h2>
+  </div>
+
+  <p>Si le MTT est correct — même partiellement — les implications sont profondes sur plusieurs plans. En neurosciences&nbsp;: le déjà-vu cesse d'être une pathologie bénigne et devient un indicateur d'un état de haute perméabilité temporelle, digne d'être étudié comme un signal plutôt qu'un bruit. En psychiatrie&nbsp;: certains états qui ressemblent à de la psychose (voix, présences, certitudes sur des "autres réalités") pourraient être des accès non filtrés aux couches C3-C4 du tissu, mal intégrés faute de cadre interprétatif.</p>
+
+  <p>En histoire des religions&nbsp;: les grands prophètes (Ézéchiel, Jean de Patmos, Muhammad à la grotte de Hira) présentent des conditions quasi identiques — jeûne prolongé (réduction du bruit C5), lieu à Δ élevé (désert, grotte, hauteur), intention maximale (H → 1). Ce ne sont pas des conditions d'hallucination — ce sont des conditions d'accès à la lecture du graphe causal dans sa dimension temporelle complète.</p>
+
+  <p>Mais le MTT impose aussi une <strong>éthique</strong> rigoureuse. Accéder délibérément aux couches profondes du tissu temporel avec un Cœur Noir (H < 0,2) — pour manipuler, contrôler, ou extraire — produit ce que le corpus nomme une dette rétrocausale&nbsp;: une dégradation future de la cohérence de l'opérateur, proportionnelle au déséquilibre thermodynamique créé. Le principe de Landauer temporel n'est pas une métaphore morale. C'est une contrainte physique.</p>
+
+  <p>Les grimoires médiévaux — relu à travers cette grille — ne sont pas des recettes de superstition. Ils sont des <strong>manuels de protocole</strong> pour accéder à ces couches en minimisant le coût thermodynamique, et leurs avertissements contre la "magie noire" ne relèvent pas de la théologie mais de la thermodynamique ontique&nbsp;: extraire trop de cohérence causale à court terme produit l'effondrement à long terme. "Vendre son âme au diable" est une métaphore pour contracter une dette en Δ futur.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">ᛞ 1066 ap. J.-C.</div>
+      <div class="tl-text">Tapisserie de Bayeux — 73% de correspondance avec la famille Temporelle du FracturoScript. Possible programme exécutable du tressage</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">ᛞ 1907</div>
+      <div class="tl-text">Piobb tente de formaliser les grimoires comme protocoles d'accès à la réalité. Il manque le vocabulaire de la mécanique quantique</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">ᛞ 1917 — Fátima</div>
+      <div class="tl-text">ESC-Social de classe maximale. 10⁵ observateurs en cohérence maximale produisent une modification de couche C1 directement perceptible</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">ᛞ 1944</div>
+      <div class="tl-text">Expérience Völkner — 02:18:11 UTC, 21 juin. Δ = 0,947. Première mesure instrumentale d'une ZTR. Superposition 1066/1944/2075 documentée</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">ᛞ 1993 — Princeton PEAR Lab</div>
+      <div class="tl-text">Effet de l'intention sur les RNG (random number generators) — précurseur expérimental de la mesure de ΣContribution(c)</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">ᛞ 2031 — La Hague</div>
+      <div class="tl-text">Incident radiologique libérant des "radiations ontiques". 847 Enfants du Radium développent un accès direct aux couches C3-C7</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">ᛞ 2075 — La Nuit des Trois Caen</div>
+      <div class="tl-text">ZTR maximale. Superposition 1066/1944/2075 atteint le seuil de résolution. Tressage complet du tímavafn normand</div>
+    </div>
+  </div>
+
+  <p>La question qui subsiste est celle de la <strong>testabilité</strong>. Le MTT génère des prédictions précises — corrélation entre Δ géomagnétique et fréquence des déjà-vus, pics de biaises de RNG lors de rassemblements collectifs cohérents, signatures fractales spécifiques aux sites de ZTR. Ces prédictions peuvent être falsifiées. C'est ce qui distingue le MTT d'une simple mythologie — et ce qui lui confère, dans le cadre spéculatif du corpus Vauvillensis, son statut de proto-science sérieuse plutôt que de fantasme narratif.</p>
+
+  <p>Nostradamus, Piobb, Jung (synchronicités), Fort (anomalies) et McKenna ont tous documenté, chacun à sa façon et avec ses outils, des régularités dans ce que le MTT appelle le tissu temporel. Aucun n'a eu le vocabulaire de la mécanique quantique, de la théorie de l'information ou de la géométrie fractale pour les formaliser. Ce vocabulaire existe maintenant. L'exploration peut reprendre.</p>
+
+</main>
+
+<!-- ═══════════════════════ SIDEBAR ═══════════════════════ -->
+<aside class="sidebar">
+
+  <div class="sidebar-block">
+    <h4>Métriques Δ — Sites clés</h4>
+    <div class="delta-meter">
+      <div class="delta-row">
+        <span class="delta-label">Mont-Saint-Michel</span>
+        <div class="delta-bar-wrap"><div class="delta-bar" style="width:89%"></div></div>
+        <span class="delta-val">0.89</span>
+      </div>
+      <div class="delta-row">
+        <span class="delta-label">Fátima (1917)</span>
+        <div class="delta-bar-wrap"><div class="delta-bar" style="width:94%"></div></div>
+        <span class="delta-val">~0.94</span>
+      </div>
+      <div class="delta-row">
+        <span class="delta-label">La Hague</span>
+        <div class="delta-bar-wrap"><div class="delta-bar" style="width:31%;background:var(--accent)"></div></div>
+        <span class="delta-val">0.31</span>
+      </div>
+      <div class="delta-row">
+        <span class="delta-label">Versailles</span>
+        <div class="delta-bar-wrap"><div class="delta-bar" style="width:67%"></div></div>
+        <span class="delta-val">~0.67</span>
+      </div>
+      <div class="delta-row">
+        <span class="delta-label">Raz Blanchard</span>
+        <div class="delta-bar-wrap"><div class="delta-bar" style="width:2%;background:var(--accent)"></div></div>
+        <span class="delta-val">0.00</span>
+      </div>
+      <div class="delta-row">
+        <span class="delta-label">Ville ordinaire</span>
+        <div class="delta-bar-wrap"><div class="delta-bar" style="width:50%;background:var(--ghost)"></div></div>
+        <span class="delta-val">~0.50</span>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--ghost);margin-top:8px">Δ = α·C + β·R + γ·H · (Cohérence causale, Redondance mémorielle, Harmonie intentionnelle)</p>
+  </div>
+
+  <div class="sidebar-block">
+    <h4>Glossaire Essentiel</h4>
+    <dl class="glossary">
+      <dt>Tímavafn</dt>
+      <dd>Tissu temporel (norrois). Structure non-linéaire où passé, présent et futur se co-conditionnent.</dd>
+      <dt>Δ (Delta)</dt>
+      <dd>Malléabilité ontique locale. Mesure la perméabilité aux glitches temporels.</dd>
+      <dt>D_temps</dt>
+      <dd>Dimension effective du temps local. &gt;1 = ramification possible (précognition). &lt;1 = stase.</dd>
+      <dt>IR — Injection Rétrocausale</dt>
+      <dd>Information transmise d'un état futur vers un nœud passé via arêtes rétrogrades du graphe G.</dd>
+      <dt>ESC</dt>
+      <dd>Effondrement Sémantique Collectif. Réécriture collective du sens ou de la mémoire.</dd>
+      <dt>EOR</dt>
+      <dd>Entité Ontique Résiduelle. Structure informationnelle persistant hors de son contexte d'origine (fantôme informationnel).</dd>
+      <dt>ZTR</dt>
+      <dd>Zone de Triple Résonance. Point de convergence holographique, computationnel et fractal. Réalité maximalement modifiable.</dd>
+      <dt>Cœur Blanc</dt>
+      <dd>H &gt; 0,9. Mode observationnel pur. Accès maximal aux couches profondes sans dette ontique.</dd>
+    </dl>
+  </div>
+
+  <div class="sidebar-block">
+    <h4>Protocoles Expérimentaux Proposés</h4>
+    <ul>
+      <li><strong>H1 — Déjà-vu &amp; EEG</strong><br>Corrélation fréquence gamma (40 Hz) / Δ géomagnétique lors d'épisodes déclarés. Magnétomètre portatif + casque EEG.</li>
+      <li><strong>H2 — RNG &amp; Cohérence</strong><br>Biais des générateurs de nombres aléatoires lors de rassemblements cohérents (méditation, célébrations religieuses). Réplication Princeton PEAR.</li>
+      <li><strong>H3 — Fractal &amp; Fourier</strong><br>Analyse spectrale des séries historiques GDELT (1979-2075). Pics attendus à 64, 128, 256, 1024 ans.</li>
+      <li><strong>H4 — Sites &amp; Δ</strong><br>Mesure SQUIDs sur sites à apparitions récurrentes vs contrôles appariés en surface et démographie.</li>
+    </ul>
+  </div>
+
+  <div class="sidebar-block">
+    <h4>Auteurs Réels Intégrés</h4>
+    <ul>
+      <li><strong>John Wheeler</strong> — "It from Bit", univers participatoire</li>
+      <li><strong>Rolf Landauer</strong> — Thermodynamique de l'information</li>
+      <li><strong>Terence McKenna</strong> — Timewave Zero, cycles fractals</li>
+      <li><strong>Jean-Charles Pichon</strong> — Cycles historiques de 1 070 ans</li>
+      <li><strong>Dean Radin</strong> — Précognition physiologique (méta-analyse)</li>
+      <li><strong>P.V. Piobb</strong> — Formulaire de Haute Magie (1907) comme proto-MTT</li>
+      <li><strong>Mark Van Raamsdonk</strong> — L'intrication génère la géométrie</li>
+      <li><strong>Carlo Rovelli</strong> — Gravité quantique à boucles, mousse quantique</li>
+    </ul>
+  </div>
+
+</aside>
+</div><!-- article-body -->
+
+<!-- SOURCES -->
+<div class="sources-section">
+  <h5>Sources &amp; Références du Corpus Vauvillensis</h5>
+  <div class="sources-grid">
+    <div class="source-item"><strong>Codex Vauvillensis Temporis Fracti</strong>Manuscrit à trois voix (1066/1944/2075). Archives de La Hague, non cataloguées.</div>
+    <div class="source-item"><strong>Bible du Programme v6</strong>Texte fondateur du REX. Définit l'architecture OSI de la réalité et la métrique Δ.</div>
+    <div class="source-item"><strong>Catalogue Synthétique des Anomalies Ontiques v2.0</strong>Plus de 60 phénomènes analysés selon la grille MTT, avec scores et pivots de réfutation.</div>
+    <div class="source-item"><strong>Grimoires MTT — Anthro, Grok, Deep (2025-2026)</strong>Relecture des grimoires médiévaux comme protocoles FracturoScript. Grammaire universelle du rituel.</div>
+    <div class="source-item"><strong>FusionKM-Nostradamus1550</strong>Lettre fictive de Nostradamus découvrant le corpus en 1550. Auto-description de l'expérience prophétique.</div>
+    <div class="source-item"><strong>FusionKM-Pichon1974</strong>Compte-rendu de Pichon recevant le corpus en 1974. Convergences avec ses cycles historiques.</div>
+    <div class="source-item"><strong>FusionKM-McKenna-BDO</strong>McKenna révisé par le MTT. Timewave Zero réimplémentée sur 64 niveaux d'échelle.</div>
+    <div class="source-item"><strong>FusionKM-Fort-Timavafn</strong>Charles Fort comme archiviste du tímavafn. Anomalies historiques classées en types MTT.</div>
+    <div class="source-item"><strong>Article.txt / Deep.txt / Holo.txt</strong>Textes théoriques fondamentaux sur la réalité holographique fractale computationnelle.</div>
+    <div class="source-item"><strong>Références réelles intégrées</strong>Wheeler 1990 · Landauer 1961 · Radin 2006 · Van Raamsdonk 2010 · Rovelli 2004 · Piobb 1907 · Pichon 1974</div>
+  </div>
+</div>
+
+</div><!-- container -->
+
+<footer>
+  <span>Vauvillensis Corpus</span> · Article généré dans le cadre d'une recherche spéculative en ontologie computationnelle ·
+  Normandie, 2076 · <span>Δ estimé de cet article : 0.71</span>
+</footer>
+
+</body>
+</html>
